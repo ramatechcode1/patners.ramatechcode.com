@@ -7,13 +7,13 @@ const morgan = require('morgan');
 const bcrypt = require('bcryptjs');
 const rateLimit = require('express-rate-limit');
 
-const Admin = require('./server/models/Admin');
-const authRoutes = require('./server/routes/auth');
-const schoolRoutes = require('./server/routes/schools');
-const studentRoutes = require('./server/routes/students');
-const paymentRoutes = require('./server/routes/payments');
-const complaintRoutes = require('./server/routes/complaints');
-const adminRoutes = require('./server/routes/admin');
+const Admin = require('./models/Admin');
+const authRoutes = require('./routes/auth');
+const schoolRoutes = require('./routes/schools');
+const studentRoutes = require('./routes/students');
+const paymentRoutes = require('./routes/payments');
+const complaintRoutes = require('./routes/complaints');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
