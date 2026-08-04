@@ -20,7 +20,48 @@ function showView(name) {
   if (name === 'overview') setTimeout(() => map && map.invalidateSize(), 50);
 }
 navButtons.forEach(btn => btn.addEventListener('click', () => showView(btn.dataset.view)));
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+  const navButtons = document.querySelectorAll('.side-nav button');
 
+  function openSidebar() {
+    sidebar.classList.add('open');
+    menuToggle.classList.add('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.add('show');
+  }
+
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    menuToggle.classList.remove('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.remove('show');
+  }
+
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      if (isOpen) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+  }
+
+  if (sidebarBackdrop) {
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+  }
+
+  // Auto-close sidebar on mobile when switching views/tabs
+  navButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth <= 860) {
+        closeSidebar();
+      }
+    });
+  });
+});
 document.getElementById('logoutBtn').addEventListener('click', () => {
   localStorage.removeItem('rtc_admin_token');
   localStorage.removeItem('rtc_admin');
