@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Ramatechcode Lab & Tech — School Partnership Portal
 
 A full website + portal for Ramatechcode Lab & Tech: a public landing page, a
@@ -122,3 +123,6 @@ deployed backend URL for production.
 =======
 # partners.ramatechcode.com
 >>>>>>> d47b59f364e4797e20009814f658c3e79407c507
+=======
+# patners.ramatechcode.com
+>>>>>>> 4bbe3f8d59bfbc5b1243889540b8f106a6910808
