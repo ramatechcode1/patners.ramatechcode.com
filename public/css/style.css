@@ -153,11 +153,18 @@ button { font-family: inherit; cursor: pointer; }
 .brand-mark {
   width: 34px; height: 34px;
   border-radius: 8px;
-  object-fit: cover;
-  border: 1px solid var(--copper);
-  flex-shrink: 0;
   background: var(--board-raised);
+  border: 1px solid var(--copper);
+  position: relative;
+  flex-shrink: 0;
 }
+.brand-mark::before, .brand-mark::after {
+  content: '';
+  position: absolute;
+  background: var(--copper);
+}
+.brand-mark::before { width: 14px; height: 2px; top: 10px; left: 10px; }
+.brand-mark::after { width: 2px; height: 14px; top: 10px; left: 16px; }
 .nav-links { display: flex; align-items: center; gap: 28px; }
 .nav-links a { color: var(--silkscreen-dim); font-size: 14.5px; font-weight: 500; transition: color 0.2s; }
 .nav-links a:hover { color: var(--silkscreen); }
