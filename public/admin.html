@@ -32,9 +32,15 @@
   </aside>
 
   <div class="main-area">
-    <div class="topbar"><h1 id="viewTitle">Overview</h1></div>
-    <div class="content" style="max-width:1200px;">
-
+   <div class="topbar">
+  <!-- Added hamburger toggle button -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <h1 id="viewTitle">Overview</h1>
+</div>
       <!-- OVERVIEW -->
       <section data-panel="overview">
         <div class="stat-grid">
@@ -103,7 +109,7 @@
     </form>
   </div>
 </div>
-
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/config.js"></script>
 <script src="js/admin.js"></script>
