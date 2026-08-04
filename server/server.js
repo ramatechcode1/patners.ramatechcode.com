@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -6,13 +7,13 @@ const morgan = require('morgan');
 const bcrypt = require('bcryptjs');
 const rateLimit = require('express-rate-limit');
 
-const Admin = require('./models/Admin');
-const authRoutes = require('./routes/auth');
-const schoolRoutes = require('./routes/schools');
-const studentRoutes = require('./routes/students');
-const paymentRoutes = require('./routes/payments');
-const complaintRoutes = require('./routes/complaints');
-const adminRoutes = require('./routes/admin');
+const Admin = require('./server/models/Admin');
+const authRoutes = require('./server/routes/auth');
+const schoolRoutes = require('./server/routes/schools');
+const studentRoutes = require('./server/routes/students');
+const paymentRoutes = require('./server/routes/payments');
+const complaintRoutes = require('./server/routes/complaints');
+const adminRoutes = require('./server/routes/admin');
 
 const app = express();
 
@@ -43,6 +44,17 @@ app.use('/api/complaints', complaintRoutes);
 app.use('/api/admin', adminRoutes);
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+
+// Serve the frontend in /public — this makes http://localhost:5000/ load index.html,
+// and http://localhost:5000/dashboard.html etc. load the other pages directly.
+const publicDir = path.join(__dirname, '..', 'public');
+app.use(express.static(publicDir));
+
+// Any GET that isn't an API route and doesn't match a static file falls back to
+// the landing page instead of a bare 404 (e.g. someone visits a typo'd path).
+app.get(/^(?!\/api\/).*/, (req, res) => {
+  res.sendFile(path.join(publicDir, 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
